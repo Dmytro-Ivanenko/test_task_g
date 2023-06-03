@@ -1,0 +1,15 @@
+.cardList {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 48px;
+}
+
+.listItem {
+    width: 100%;
+}

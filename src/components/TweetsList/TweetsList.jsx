@@ -6,7 +6,7 @@ export function TweetsList({ cardArr }) {
         <ul className={styles.cardList}>
             {cardArr.map(item => {
                 return (
-                    <li key={item.id}>
+                    <li className={styles.listItem} key={item.id}>
                         <Tweet card={item} />
                     </li>
                 );
