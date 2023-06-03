@@ -1,1 +1,10 @@
 @import '~modern-normalize/modern-normalize.css';
+@import './sass/vars';
+
+body {
+    background-color: var(--main-bcg-color);
+}
+
+a.active {
+    color: var(--acc-color);
+}
