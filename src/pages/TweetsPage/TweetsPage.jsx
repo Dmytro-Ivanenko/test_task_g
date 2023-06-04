@@ -6,13 +6,18 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { TweetsList } from '../../components';
 import { Button, Container } from '../../shared/components';
-import { getAll } from '../../utils/tweetsApi';
+import { getAll, follow } from '../../utils/tweetsApi';
 import styles from './tweetsPage.module.scss';
 
+//Component
 export function TweetsPage() {
     const [cards, setCards] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+    const backLinkHref = location.state?.from ?? '/';
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,26 +30,40 @@ export function TweetsPage() {
                 setCards(cardsArr);
                 setLoading(false);
             } catch (error) {
-                console.error('Error fetching data:', error);
+                setLoading(false);
             }
         };
 
         fetchData();
-
         // eslint-disable-next-line
     }, [page]);
 
+    //Load more button
     const loadMore = async () => {
         const newPage = page + 1;
         setPage(newPage);
     };
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const backLinkHref = location.state?.from ?? '/';
-
+    // Back button
     const btnFunction = () => {
         navigate(backLinkHref);
+    };
+
+    //Follow button
+    const onFollow = async tweet => {
+        const response = await follow(tweet);
+
+        if (response) {
+            const newArr = cards.map(card => {
+                if (card.id !== tweet.id) {
+                    return card;
+                }
+
+                return { ...card, following: tweet.following };
+            });
+
+            setCards(newArr);
+        }
     };
 
     return (
@@ -53,7 +72,7 @@ export function TweetsPage() {
 
             <h1 className={styles.title}>Tweets</h1>
 
-            <TweetsList cardArr={cards} />
+            <TweetsList cardArr={cards} onFollow={onFollow} />
 
             <BeatLoader className={styles.loader} loading={loading} color="#5736a3" />
 

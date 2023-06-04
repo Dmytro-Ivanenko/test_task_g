@@ -7,11 +7,15 @@ import elipse2x from '../../images/elipse2x.png';
 
 const numFormat = new Intl.NumberFormat('en-US');
 
-export function Tweet({ card }) {
+export function Tweet({ card, follow }) {
     const { avatar = '', tweets = 0, followers = 0, following = false } = card;
 
     const onFollow = () => {
-        console.log('follow');
+        if (following) {
+            follow({ ...card, following: false });
+        } else {
+            follow({ ...card, following: true });
+        }
     };
     return (
         <div className={styles.tweet}>
