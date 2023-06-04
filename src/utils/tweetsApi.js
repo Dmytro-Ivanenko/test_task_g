@@ -14,13 +14,28 @@ const toastParams = {
     theme: 'light',
 };
 
-export const getAll = async ({ page, limit = 3 }) => {
+export const getTweets = async ({ page, limit = 3, filter }) => {
+    let params = {
+        page,
+        limit,
+    };
+
+    switch (filter) {
+        case 'follow':
+            params = { ...params, following: false };
+            break;
+
+        case 'following':
+            params = { ...params, following: true };
+            break;
+
+        default:
+            break;
+    }
+
     try {
         const { data } = await axios.get('/users', {
-            params: {
-                page,
-                limit,
-            },
+            params,
         });
 
         if (data.length === 0) {
@@ -32,7 +47,7 @@ export const getAll = async ({ page, limit = 3 }) => {
     }
 };
 
-export const follow = async card => {
+export const changeFollow = async card => {
     try {
         const { data } = await axios.put(`/users/${card.id}`, card);
 

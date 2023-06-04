@@ -6,6 +6,15 @@
     text-transform: uppercase;
 }
 
+.dropdown {
+    margin-bottom: 20px;
+    background-image: var(--card-color);
+    color: var(--font-color);
+    border-radius: 13px;
+
+    cursor: pointer;
+}
+
 .button {
     display: block;
     width: 196px;

@@ -3,28 +3,34 @@ import { useState, useEffect } from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 import { TweetsList } from '../../components';
 import { Button, Container } from '../../shared/components';
-import { getAll, follow } from '../../utils/tweetsApi';
+import { getTweets, changeFollow } from '../../utils/tweetsApi';
 import styles from './tweetsPage.module.scss';
 
 //Component
 export function TweetsPage() {
     const [cards, setCards] = useState([]);
     const [page, setPage] = useState(1);
+    const [filter, setFilter] = useState('get all');
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const location = useLocation();
     const backLinkHref = location.state?.from ?? '/';
 
+    const options = ['show all', 'follow', 'following'];
+    const defaultOption = options[0];
+
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
 
-                const data = await getAll({ page });
+                const data = await getTweets({ page, filter });
                 const cardsArr = [...cards, ...data];
 
                 setCards(cardsArr);
@@ -52,7 +58,7 @@ export function TweetsPage() {
     //Follow button
     const onFollow = async tweet => {
         const { following, followers, id } = tweet;
-        const response = await follow(tweet);
+        const response = await changeFollow(tweet);
 
         if (response) {
             const newArr = cards.map(card => {
@@ -67,12 +73,42 @@ export function TweetsPage() {
         }
     };
 
+    const onFilter = async ({ value }) => {
+        setCards([]);
+        setFilter(value);
+
+        if (page !== 1) {
+            setPage(1);
+            return;
+        }
+
+        try {
+            setLoading(true);
+
+            const data = await getTweets({ page: 1, filter: value });
+
+            setCards(data);
+
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+        }
+    };
+
     //Return
     return (
         <Container>
             <Button btnFunction={btnFunction}>Back</Button>
 
             <h1 className={styles.title}>Tweets</h1>
+
+            <Dropdown
+                controlClassName={styles.dropdown}
+                options={options}
+                onChange={onFilter}
+                value={defaultOption}
+                placeholder="Filter"
+            />
 
             <TweetsList cardArr={cards} onFollow={onFollow} />
 
@@ -83,7 +119,6 @@ export function TweetsPage() {
                     Load more
                 </Button>
             )}
-
             <ToastContainer />
         </Container>
     );
