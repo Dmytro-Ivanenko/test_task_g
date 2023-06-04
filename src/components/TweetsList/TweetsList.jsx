@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Tweet } from '../';
 import styles from './tweetsList.module.scss';
 
@@ -14,3 +16,17 @@ export function TweetsList({ cardArr, onFollow }) {
         </ul>
     );
 }
+
+TweetsList.propTypes = {
+    cardArr: PropTypes.arrayOf(
+        PropTypes.shape({
+            user: PropTypes.string.isRequired,
+            avatar: PropTypes.string.isRequired,
+            tweets: PropTypes.number.isRequired,
+            followers: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
+            following: PropTypes.bool.isRequired,
+        })
+    ).isRequired,
+    onFollow: PropTypes.func.isRequired,
+};

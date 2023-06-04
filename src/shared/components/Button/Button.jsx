@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './button.module.scss';
 export function Button({ btnFunction, type = 'button', className, children }) {
     return (
@@ -6,3 +8,10 @@ export function Button({ btnFunction, type = 'button', className, children }) {
         </button>
     );
 }
+
+Button.propTypes = {
+    btnFunction: PropTypes.func.isRequired,
+    type: PropTypes.oneOf(['button', 'submit', 'reset']),
+    className: PropTypes.string,
+    children: PropTypes.node.isRequired,
+};

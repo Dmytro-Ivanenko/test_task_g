@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './tweet.module.scss';
 import { Button } from '../../shared/components';
 import logo from '../../images/logo.svg';
@@ -40,3 +42,17 @@ export function Tweet({ card, follow }) {
         </div>
     );
 }
+
+Tweet.propTypes = {
+    card: PropTypes.arrayOf(
+        PropTypes.shape({
+            user: PropTypes.string.isRequired,
+            avatar: PropTypes.string.isRequired,
+            tweets: PropTypes.number.isRequired,
+            followers: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
+            following: PropTypes.bool.isRequired,
+        })
+    ).isRequired,
+    follow: PropTypes.func.isRequired,
+};
