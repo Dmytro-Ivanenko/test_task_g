@@ -11,7 +11,6 @@ import { Button, Container } from '../../shared/components';
 import { getTweets, changeFollow } from '../../utils/tweetsApi';
 import styles from './tweetsPage.module.scss';
 
-//Component
 export function TweetsPage() {
     const [cards, setCards] = useState([]);
     const [page, setPage] = useState(1);
@@ -44,18 +43,15 @@ export function TweetsPage() {
         // eslint-disable-next-line
     }, [page]);
 
-    //Load more button
     const loadMore = async () => {
         const newPage = page + 1;
         setPage(newPage);
     };
 
-    // Back button
     const btnFunction = () => {
         navigate(backLinkHref);
     };
 
-    //Follow button
     const onFollow = async tweet => {
         const { following, followers, id } = tweet;
         const response = await changeFollow(tweet);
@@ -95,7 +91,6 @@ export function TweetsPage() {
         }
     };
 
-    //Return
     return (
         <Container>
             <Button btnFunction={btnFunction}>Back</Button>
