@@ -2,4 +2,22 @@
     display: flex;
     justify-content: center;
     margin: 20px;
+
+    text-transform: uppercase;
+}
+
+.button {
+    display: block;
+    width: 196px;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    margin-bottom: 20px;
+}
+
+.loader {
+    width: 57px;
+    margin-right: auto;
+    margin-left: auto;
 }

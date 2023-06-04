@@ -87,4 +87,11 @@
 
     margin-right: auto;
     margin-left: auto;
+    &.following {
+        background-color: var(--acc-color);
+
+        &:hover {
+            background-color: var(--elem-color);
+        }
+    }
 }

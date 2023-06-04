@@ -5,8 +5,10 @@ import logo from '../../images/logo.svg';
 import elipse from '../../images/elipse.png';
 import elipse2x from '../../images/elipse2x.png';
 
+const numFormat = new Intl.NumberFormat('en-US');
+
 export function Tweet({ card }) {
-    const { avatar, tweets, followers, following = false } = card;
+    const { avatar = '', tweets = 0, followers = 0, following = false } = card;
 
     const onFollow = () => {
         console.log('follow');
@@ -25,10 +27,12 @@ export function Tweet({ card }) {
             />
 
             <div className={styles.infoWrapper}>
-                <p className={styles.info}>{`${tweets} tweets`}</p>
-                <p className={styles.info}>{`${followers} followers`}</p>
+                <p className={styles.info}>{`${numFormat.format(tweets)} tweets`}</p>
+                <p className={styles.info}>{`${numFormat.format(followers)} followers`}</p>
             </div>
-            <Button className={styles.button} btnFunction={onFollow}>{`${following ? 'following' : 'follow'}`}</Button>
+            <Button className={`${styles.button} ${following && styles.following} `} btnFunction={onFollow}>{`${
+                following ? 'following' : 'follow'
+            }`}</Button>
         </div>
     );
 }
