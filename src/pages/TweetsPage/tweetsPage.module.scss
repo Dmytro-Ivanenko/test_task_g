@@ -7,12 +7,18 @@
 }
 
 .dropdown {
+    width: 150px;
     margin-bottom: 20px;
     background-image: var(--card-color);
     color: var(--font-color);
     border-radius: 13px;
 
     cursor: pointer;
+}
+
+.dropdownMenu {
+    width: 150px;
+    border-radius: 13px;
 }
 
 .button {

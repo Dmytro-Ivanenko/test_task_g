@@ -104,6 +104,7 @@ export function TweetsPage() {
 
             <Dropdown
                 controlClassName={styles.dropdown}
+                menuClassName={styles.dropdownMenu}
                 options={options}
                 onChange={onFilter}
                 value={defaultOption}
