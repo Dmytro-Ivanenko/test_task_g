@@ -25,7 +25,7 @@ export function TweetsPage() {
                         user: 'Joshua_Dach',
                         avatar: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/958.jpg',
                         tweets: 53,
-                        followers: 22,
+                        followers: 150022,
                         id: '1',
                     },
                 ]}

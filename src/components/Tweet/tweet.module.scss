@@ -37,6 +37,8 @@
 
     margin-right: -20px;
     margin-left: -20px;
+    margin-bottom: 62px;
+
     background-color: var(--elem-color);
     box-shadow: var(--shadow-inset);
 }
@@ -44,13 +46,13 @@
 .avatar {
     width: 64px;
     border-radius: 36px;
-    transform: translateX(-28px) translateY(-40px);
+    transform: translateX(-50%) translateY(-40px);
 }
 
 .elipse {
     width: 80px;
     height: 80px;
-    transform: translateX(-35px) translateY(-43px);
+    transform: translateX(-50%) translateY(-43px);
 }
 
 .avatar,
@@ -58,4 +60,31 @@
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+.infoWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    margin-bottom: 26px;
+
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: uppercase;
+
+    color: var(--font-color);
+}
+
+.info {
+    margin: 0;
+}
+.button {
+    display: block;
+    width: 196px;
+
+    margin-right: auto;
+    margin-left: auto;
 }
