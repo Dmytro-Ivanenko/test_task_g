@@ -46,5 +46,7 @@ To run this project locally, follow these steps:
 
 5. Open your web browser and visit http://localhost:3000 to view the app.
 
-Contributing Contributions to this project are welcome. If you find any issues or have suggestions for improvement,
-please open an issue or submit a pull request.
+Contributing:
+
+Contributions to this project are welcome. If you find any issues or have suggestions for improvement, please open an
+issue or submit a pull request.
