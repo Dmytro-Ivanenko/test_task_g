@@ -51,21 +51,23 @@ export function TweetsPage() {
 
     //Follow button
     const onFollow = async tweet => {
+        const { following, followers, id } = tweet;
         const response = await follow(tweet);
 
         if (response) {
             const newArr = cards.map(card => {
-                if (card.id !== tweet.id) {
+                if (card.id !== id) {
                     return card;
                 }
 
-                return { ...card, following: tweet.following };
+                return { ...card, following, followers };
             });
 
             setCards(newArr);
         }
     };
 
+    //Return
     return (
         <Container>
             <Button btnFunction={btnFunction}>Back</Button>

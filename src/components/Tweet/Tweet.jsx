@@ -12,9 +12,9 @@ export function Tweet({ card, follow }) {
 
     const onFollow = () => {
         if (following) {
-            follow({ ...card, following: false });
+            follow({ ...card, following: false, followers: followers - 1 });
         } else {
-            follow({ ...card, following: true });
+            follow({ ...card, following: true, followers: followers + 1 });
         }
     };
     return (
